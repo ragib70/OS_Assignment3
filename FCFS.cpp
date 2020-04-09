@@ -7,7 +7,8 @@ struct PCB{
   int arrival=0;// Time Instant when a process arrives.
   int turnaround=0;// Time taken for the completion of the process from the instant it was submitted.
   int wait=0;//Time spent waiting in the ready queue.
-  int completion=0;// Timestamp at which a particular process execution completes.
+  int completion=0;// Timestamp at which a particular process execution completes.###from the point of view of CPU.
+  int shiftarrival=0;//This is used in the case if the arrival time doesnt starts from 0 then we need to offset it from the initial value assuming shiftarrival our new zero
 };
 
 bool comparetwoP(PCB P1, PCB P2){
@@ -15,10 +16,15 @@ bool comparetwoP(PCB P1, PCB P2){
 }
 
 void findwaittime(PCB* P, int N){
-  P[0].wait=P[0].arrival;
+
+  for(int i=0; i<N; i++){
+    P[i].shiftarrival = P[i].arrival-P[0].arrival;
+  }
+
+  P[0].wait=0;
   for(int i=1; i<N; i++){
-    int temp = P[i-1].wait + P[i-1].burst;
-    if(temp > P[i].arrival)
+    int temp = P[i-1].wait + P[i-1].burst - P[i].shiftarrival;
+    if(temp > 0)
       P[i].wait = temp;
     else
       P[i].wait = 0;
@@ -33,7 +39,7 @@ void findturnaroundtime(PCB* P, int N){
 
 void findcompletion(PCB* P, int N){
   for(int i=0; i<N; i++){
-    P[i].completion = P[i].turnaround + P[i].arrival;
+      P[i].completion = P[i].turnaround + P[i].arrival;
   }
 }
 
