@@ -8,39 +8,26 @@ struct PCB{
   int turnaround=0;// Time taken for the completion of the process from the instant it was submitted.
   int wait=0;//Time spent waiting in the ready queue.
   int completion=0;// Timestamp at which a particular process execution completes.###from the point of view of CPU.
-  int shiftarrival=0;//This is used in the case if the arrival time doesnt starts from 0 then we need to offset it from the initial value assuming shiftarrival our new zero
 };
 
 bool comparetwoP(PCB P1, PCB P2){
   return (P1.arrival < P2.arrival);
 }
 
-void findwaittime(PCB* P, int N){
-
-  for(int i=0; i<N; i++){
-    P[i].shiftarrival = P[i].arrival-P[0].arrival;
-  }
-
-  P[0].wait=0;
-  for(int i=1; i<N; i++){
-    int temp = P[i-1].wait + P[i-1].burst - P[i].shiftarrival;
-    if(temp > 0)
-      P[i].wait = temp;
-    else
-      P[i].wait = 0;
-  }
+int findwaittime(int c0, int a1){
+  int wait = c0 - a1;
+  if(wait < 0)
+    return 0;
+  else
+    return wait;
 }
 
-void findturnaroundtime(PCB* P, int N){
-  for(int i=0; i<N; i++){
-    P[i].turnaround = P[i].wait + P[i].burst;
-  }
+int findturnaroundtime(int a, int b){
+  return (a+b);
 }
 
-void findcompletion(PCB* P, int N){
-  for(int i=0; i<N; i++){
-      P[i].completion = P[i].turnaround + P[i].arrival;
-  }
+int findcompletion(int a, int b){
+  return (a+b);
 }
 
 float findaveragewait(PCB* P,int N){
@@ -59,6 +46,15 @@ float findaverageturnaround(PCB* P,int N){
   return (sum/N);
 }
 
+void fill(PCB* P,int N){
+
+  for(int i=1; i<N; i++){
+    P[i].wait = findwaittime(P[i-1].completion,P[i].arrival);
+    P[i].turnaround = findturnaroundtime(P[i].wait,P[i].burst);
+    P[i].completion = findcompletion(P[i].arrival,P[i].turnaround);
+  }
+}
+
 int main(){
 
   cout<<"Enter the No. of Processes ";
@@ -72,11 +68,11 @@ int main(){
 
   sort(P,P+N,comparetwoP);
 
-  findwaittime(P,N);
+  P[0].wait = 0;
+  P[0].turnaround = P[0].burst;
+  P[0].completion = P[0].burst + P[0].arrival;
 
-  findturnaroundtime(P,N);
-
-  findcompletion(P,N);
+  fill(P,N);
 
   cout<<"Process ID\t\tBurst Time\t\tWait Time\t\tTrunaround Time\t\tCompletion Time"<<endl;
   for(int i=0; i<N; i++){
