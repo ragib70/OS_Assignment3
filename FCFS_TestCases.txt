@@ -9,6 +9,8 @@ Process ID                Burst Time                     Wait Time              
   2                           3                             24                          27                                   27
   3                           4                             27                          31                                   31
 
+_____________________________________________________XXXXXXXXX_____________________________________________XXXXXXXXXXXXX____________________________________________________
+
 Process ID                Arrival Time                  Burst Time
   1                           1                             24
   2                           0                             3
@@ -18,4 +20,43 @@ Results:
 Process ID                Burst Time                     Wait Time                  Turnaround Time                     Completion Time
   2                           3                             0                           3                                     3
   3                           4                             3                           7                                     7
-  1                           24                            6                           30                                    30
+  1                           24                            6                           30                                    31
+
+_____________________________________________________XXXXXXXXX_____________________________________________XXXXXXXXXXXXX____________________________________________________
+
+Process ID                Arrival Time                  Burst Time
+  1                           100                           24
+  2                           0                             3
+  3                           0                             4
+
+Results:
+Process ID                Burst Time                     Wait Time                  Turnaround Time                     Completion Time
+  2                           3                             0                           3                                     3
+  3                           4                             3                           7                                     7
+  1                           24                            0                           24                                    124
+
+_____________________________________________________XXXXXXXXX_____________________________________________XXXXXXXXXXXXX____________________________________________________
+
+Process ID                Arrival Time                  Burst Time
+  1                           100                           24
+  2                           0                             3
+  3                           1                             4
+
+Results:
+Process ID                Burst Time                     Wait Time                  Turnaround Time                     Completion Time
+  2                           3                             0                           3                                     3
+  3                           4                             2                           6                                     7
+  1                           24                            0                           24                                    124
+
+_____________________________________________________XXXXXXXXX_____________________________________________XXXXXXXXXXXXX____________________________________________________
+
+Process ID                Arrival Time                  Burst Time
+  1                           100                           24
+  2                           2                             3
+  3                           1                             4
+
+Results:
+Process ID                Burst Time                     Wait Time                  Turnaround Time                     Completion Time
+  3                           4                             0                           4                                     5
+  2                           3                             3                           6                                     8
+  1                           24                            0                           24                                    124
