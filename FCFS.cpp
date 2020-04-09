@@ -21,7 +21,7 @@ void findwaittime(PCB* P, int N){
     if(temp > P[i].arrival)
       P[i].wait = temp;
     else
-      P[i].wait = P[i].arrival;
+      P[i].wait = 0;
   }
 }
 
