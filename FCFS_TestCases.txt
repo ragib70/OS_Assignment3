@@ -60,3 +60,15 @@ Process ID                Burst Time                     Wait Time              
   3                           4                             0                           4                                     5
   2                           3                             3                           6                                     8
   1                           24                            0                           24                                    124
+
+_____________________________________________________XXXXXXXXX_____________________________________________XXXXXXXXXXXXX____________________________________________________
+
+Process ID                Arrival Time                  Burst Time
+ 1                            0       		            5
+ 2       		      6			            3
+ 3         		      7 		            8	
+Results:
+Process ID                Burst Time                     Wait Time                  Turnaround Time                     Completion Time
+  1                           5      	                    0                       	 5                         	       5
+  2                           3                             0                            3                             	       9
+  3                           8                             2                            10                                    17
