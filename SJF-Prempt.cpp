@@ -36,10 +36,15 @@ void findwaittime(PCB* P, int N){
         }
     }
 
-    if(i==N)
+    if(shortest==N){//Earlier I kept i==N and it failed make it sure to correct if any test case fails.
+      cout<<"At t = "<<time<<" , CPU is idle"<<endl;
       continue;
-
-    cout<<"Shortest Job Executing = "<<P[shortest].PID<<endl;
+    }
+    //
+    // if(shortest==N)
+    //   cout<<"At t = "<<time<<" , CPU is idle"<<endl;
+    // else
+      cout<<"At t = "<<time<<", Shortest Job Executing = "<<P[shortest].PID<<endl;
 
     remaining[shortest]--;
 
@@ -97,11 +102,12 @@ int main(){
 
   sort(P,P+N,comparetwoP);
 
+  cout<<"Simulation Results :"<<endl;
   findwaittime(P,N);
 
   findturnaroundtime(P,N);
 
-  cout<<"Process ID\t\tBurst Time\t\tWait Time\t\tTrunaround Time\t\tCompletion Time"<<endl;
+  cout<<"Process ID\t\tBurst Time\t\tWait Time\t\tTurnaround Time\t\tCompletion Time"<<endl;
   for(int i=0; i<N; i++){
     cout<<P[i].PID<<"\t\t\t"<<P[i].burst<<"\t\t\t"<<P[i].wait<<"\t\t\t"<<P[i].turnaround<<"\t\t\t"<<P[i].completion<<endl;
   }
