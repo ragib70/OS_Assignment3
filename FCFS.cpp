@@ -74,7 +74,7 @@ int main(){
 
   fill(P,N);
 
-  cout<<"Process ID\t\tBurst Time\t\tWait Time\t\tTrunaround Time\t\tCompletion Time"<<endl;
+  cout<<"Process ID\t\tBurst Time\t\tWait Time\t\tTurnaround Time\t\tCompletion Time"<<endl;
   for(int i=0; i<N; i++){
     cout<<P[i].PID<<"\t\t\t"<<P[i].burst<<"\t\t\t"<<P[i].wait<<"\t\t\t"<<P[i].turnaround<<"\t\t\t"<<P[i].completion<<endl;
   }
