@@ -29,14 +29,16 @@ void findwaittime(PCB* P, int N){
   for(int time=P[0].arrival; completed!=N; time++){
 
     int i=0;
-    for(i=0; i<=N; i++){
+    int token = 0;
+    for(i=0; i<N; i++){
       if(P[i].arrival<=time && remaining[i]>0 && remaining[i]<short_remain){
           shortest=i;
           short_remain = remaining[i];
+          token = 1;
         }
     }
 
-    if(shortest==N){//Earlier I kept i==N and it failed make it sure to correct if any test case fails.
+    if(token==0){//Earlier I kept i==N and it failed make it sure to correct if any test case fails.
       cout<<"At t = "<<time<<" , CPU is idle"<<endl;
       continue;
     }
@@ -53,6 +55,8 @@ void findwaittime(PCB* P, int N){
     if(short_remain==0)
        cout<<"----------XXX----------Job "<<P[shortest].PID <<" Completed----------XXX-----------"<<endl;
        short_remain = INT_MAX;
+
+
 
     if(remaining[shortest]==0){
       completed+=1;
