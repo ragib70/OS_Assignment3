@@ -46,19 +46,18 @@ void findwaittime(PCB* P, int N){
     // if(shortest==N)
     //   cout<<"At t = "<<time<<" , CPU is idle"<<endl;
     // else
-      cout<<"At t = "<<time<<", Shortest Job Executing = "<<P[shortest].PID<<endl;
+    cout<<"At t = "<<time<<", Shortest Job Executing = "<<P[shortest].PID<<endl;
 
     remaining[shortest]--;
 
     short_remain = remaining[shortest];
 
-    if(short_remain==0)
-       cout<<"----------XXX----------Job "<<P[shortest].PID <<" Completed----------XXX-----------"<<endl;
-       short_remain = INT_MAX;
+    short_remain = INT_MAX;
 
 
 
     if(remaining[shortest]==0){
+      cout<<"----------XXX----------Job "<<P[shortest].PID <<" Completed----------XXX-----------"<<endl;
       completed+=1;
       P[shortest].completion = time+1;
       P[shortest].wait = P[shortest].completion - P[shortest].burst - P[shortest].arrival;
