@@ -28,7 +28,18 @@ void fillWaitTime(PCB* P, int N, int tq){
   P[0].mark=1;
 
   while(completed!=N){
-    current=q.front();
+
+    if(!q.empty())
+      current=q.front();
+    else{
+      for(int i=0; i<N; i++){
+        if(P[i].mark==0){
+          q.push(i);
+          current=q.front();
+          break;
+        }
+      }
+    }
 
     if(time<P[current].arrival){
       cout<<"At t = "<<time<<", CPU is idle"<<endl;
@@ -37,6 +48,7 @@ void fillWaitTime(PCB* P, int N, int tq){
     }
 
     q.pop();
+    P[current].mark=1;
 
     if(tq < remaining[current]){
       cout<<"At t = "<<time<<", Job Executing = "<<P[current].PID<<endl;
@@ -50,7 +62,6 @@ void fillWaitTime(PCB* P, int N, int tq){
       time+=remaining[current];
       cout<<"----------XXX----------"<<"At t = "<<time<<", Job "<<P[current].PID <<" Completed----------XXX-----------"<<endl;
       token=0;
-      P[current].mark=0;
       remaining[current]=0;
       P[current].completion = time;
       P[current].wait = P[current].completion - P[current].burst - P[current].arrival;
