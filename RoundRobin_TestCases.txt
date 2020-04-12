@@ -1,0 +1,68 @@
+PID                   Arrival Time                      Burst Time            Time Quanta = 3
+  1                       5                                  5
+  2                       4                                  6
+  3                       3                                  7
+  4                       1                                  9
+  5                       2                                  2
+  6                       6                                  3
+
+Process ID              Burst Time              Wait Time               Turnaround Time         Completion Time
+  4                       9                       20                        29                      30
+  5                       2                       2                         4                       6
+  3                       7                       23                        30                      33
+  2                       6                       17                        23                      27
+  1                       5                       22                        27                      32
+  6                       3                       12                        15                      21
+Average Wait Time = 16
+Average Turnaround Time = 21.3333
+-------------------------------------XXXXXXXXXXXXXXXXX--------------------------------------------------------------------XXXXXXXXXXXXXXXXXXX----------------------------
+PID                   Arrival Time                      Burst Time            Time Quanta = 2
+  1                       0                                  4
+  2                       1                                  5
+  3                       2                                  2
+  4                       3                                  1
+  5                       4                                  6
+  6                       6                                  3
+
+Simulation Results :
+Process ID              Burst Time              Wait Time               Turnaround Time         Completion Time
+  1                       4                       4                       8                       8
+  2                       5                       12                      17                      18
+  3                       2                       2                       4                       6
+  4                       1                       5                       6                       9
+  5                       6                       11                      17                      21
+  6                       3                       10                      13                      19
+Average Wait Time = 7.33333
+Average Turnaround Time = 10.8333
+-------------------------------------XXXXXXXXXXXXXXXXX--------------------------------------------------------------------XXXXXXXXXXXXXXXXXXX----------------------------
+PID                   Arrival Time                      Burst Time            Time Quanta = 4
+  1                       0                                  4
+  2                       1                                  5
+  3                       2                                  2
+  4                       3                                  1
+  5                       4                                  6
+  6                       6                                  3
+
+Simulation Results :
+Process ID              Burst Time              Wait Time               Turnaround Time         Completion Time
+  1                       4                       0                       4                       4
+  2                       5                       13                      18                      19
+  3                       2                       6                       8                       10
+  4                       1                       7                       8                       11
+  5                       6                       11                      17                      21
+  6                       3                       9                       12                      18
+Average Wait Time = 7.66667
+Average Turnaround Time = 11.1667
+-------------------------------------XXXXXXXXXXXXXXXXX--------------------------------------------------------------------XXXXXXXXXXXXXXXXXXX----------------------------
+PID                   Arrival Time                      Burst Time            Time Quanta = 4
+  1                       0                                 24
+  2                       0                                 3
+  3                       0                                 3
+
+Simulation Results :
+Process ID              Burst Time              Wait Time               Turnaround Time         Completion Time
+  1                       24                      6                       30                      30
+  2                       3                       4                       7                       7
+  3                       3                       7                       10                      10
+Average Wait Time = 5.66667
+Average Turnaround Time = 15.6667
