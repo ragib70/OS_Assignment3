@@ -25,59 +25,59 @@ void fillWaitTime(PCB* P, int N, int tq){
   int completed=0, time=0, current=0, token=0;
   queue<int> q;
   q.push(0);
-  P[0].mark=1;
+  P[0].mark=1;//Mark the initial process because it will be visited at first.
 
   while(completed!=N){
 
-    if(!q.empty())
+    if(!q.empty())//There might be that the queue is empty and still completed !=n which can happen like arrival time of any process is very late like 100 or 1000
       current=q.front();
-    else{
+    else{//that condition is handled here
       for(int i=0; i<N; i++){
-        if(P[i].mark==0){
-          q.push(i);
+        if(P[i].mark==0){//we will search that process which is very late and since it has not got control of the CPU yet now its mark will be 0
+          q.push(i);//we will find that and push it.
           current=q.front();
           break;
         }
       }
     }
 
-    if(time<P[current].arrival){
+    if(time<P[current].arrival){//arrival time of current process is greater that the clock time we have to wait as other process arrival time will be more than current process arrival as processes are sorted according to the arrival time
       cout<<"At t = "<<time<<", CPU is idle"<<endl;
       time+=1;
       continue;
     }
 
     q.pop();
-    P[current].mark=1;
+    P[current].mark=1;//since the process has got control of the process we mark it visited
 
-    if(tq < remaining[current]){
+    if(tq < remaining[current]){//execute the current process and save the remaining time
       cout<<"At t = "<<time<<", Job Executing = "<<P[current].PID<<endl;
       time+=tq;
       remaining[current]-=tq;
-      token=1;
+      token=1;//to indicate this process has to be scheduled again
     }
     else{
       cout<<"At t = "<<time<<", Job Executing = "<<P[current].PID<<endl;
       completed+=1;
       time+=remaining[current];
       cout<<"----------XXX----------"<<"At t = "<<time<<", Job "<<P[current].PID <<" Completed----------XXX-----------"<<endl;
-      token=0;
+      token=0;//to indicate that process execution is completed and need not be scheduled again
       remaining[current]=0;
       P[current].completion = time;
       P[current].wait = P[current].completion - P[current].burst - P[current].arrival;
-      if(P[current].wait<0)
+      if(P[current].wait<0)//for those process whose arrival time is very late there wait will be 0
         P[current].wait=0;
     }
 
     for(int i=0; i<N; i++){
       if(P[i].arrival<=time && remaining[i]>0 && !P[i].mark){
         q.push(i);
-        P[i].mark=1;
+        P[i].mark=1;//adding those process which have not been visited yet and have arrived
       }
     }
 
     if(token==1)
-      q.push(current);
+      q.push(current);//pushing the current process after the all non visited processes as the current process has some remianing time left since the token is 1
   }
 }
 
