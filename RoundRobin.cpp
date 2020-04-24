@@ -4,13 +4,41 @@ using namespace std;
 struct PCB{
   int PID=0;
   int burst=0;
-  int priority=0;
   int arrival=0;// Time Instant when a process arrives.
   int turnaround=0;// Time taken for the completion of the process from the instant it was submitted.
   int wait=0;//Time spent waiting in the ready queue.
   int completion=0;// Timestamp at which a particular process execution completes.###from the point of view of CPU.
   int mark=0;//To keep track of the the processes inside the queue so that they don't get inserted again in the queue.
 };
+
+
+
+void GenPID(PCB *P, int N){
+  for(int i=0; i<N; i++)
+    P[i].PID = i+1;
+}
+
+void RandGenA(PCB *P, int N){
+  srand((unsigned) time(0));
+  int randomNumber;
+  for (int index = 0; index < N; index++) {
+    randomNumber = (rand() % 1000) + 1;
+    P[index].arrival = randomNumber;
+  }
+}
+
+void RandGenB(PCB *P, int N){
+  srand((unsigned) time(0));
+  int randomNumber;
+  for (int index = 0; index < N; index++) {
+    randomNumber = (rand() % 100) + 1;
+    P[index].burst = randomNumber;
+  }
+}
+
+
+
+
 
 bool comparetwoP(PCB P1, PCB P2){
   return (P1.arrival < P2.arrival);
@@ -103,6 +131,28 @@ float findaverageturnaround(PCB* P,int N){
   return (sum/N);
 }
 
+
+
+void ManualFill(PCB *P, int N){
+  cout<<"PID\t\tArrival Time\t\tBurst Time"<<endl;
+  for(int i=0; i<N; i++){
+    cin>>P[i].PID>>P[i].arrival>>P[i].burst;
+  }
+}
+
+void AutoFill(PCB *P, int N){
+  GenPID(P,N);
+  RandGenA(P,N);
+  RandGenB(P,N);
+  cout<<"Process ID\t\tArrival Time\t\tBurst Time"<<endl;
+  for(int i=0; i<N; i++){
+    cout<<P[i].PID<<"\t\t\t"<<P[i].arrival<<"\t\t\t"<<P[i].burst<<endl;
+  }
+}
+
+
+
+
 int main(){
 
   cout<<"Enter the No. of Processes ";
@@ -112,10 +162,19 @@ int main(){
   int tq;
   cin>>tq;
   struct PCB* P = new PCB[N];
-  cout<<"PID\t\tArrival Time\t\tBurst Time"<<endl;
-  for(int i=0; i<N; i++){
-    cin>>P[i].PID>>P[i].arrival>>P[i].burst;
-  }
+
+
+  cout<<"Choose Random Generator(0) or Manual Input(1)"<<endl;
+  int option;
+  cin>>option;
+  if(option==1)
+      ManualFill(P,N);
+  else if(option==0){
+      AutoFill(P,N);
+    }
+  else
+      cout<<"Wrong Option choosen"<<endl;
+
 
   sort(P,P+N,comparetwoP);
 
