@@ -13,6 +13,40 @@ struct PCB{
   int change=0;
 };
 
+
+void GenPID(PCB *P, int N){
+  for(int i=0; i<N; i++)
+    P[i].PID = i+1;
+}
+
+void RandGenA(PCB *P, int N){
+  srand((unsigned) time(0));
+  int randomNumber;
+  for (int index = 0; index < N; index++) {
+    randomNumber = (rand() % 1000) + 1;
+    P[index].arrival = randomNumber;
+  }
+}
+
+void RandGenB(PCB *P, int N){
+  srand((unsigned) time(0));
+  int randomNumber;
+  for (int index = 0; index < N; index++) {
+    randomNumber = (rand() % 100) + 1;
+    P[index].burst = randomNumber;
+  }
+}
+
+void RandGenP(PCB *P, int N){
+  srand((unsigned) time(0));
+  int randomNumber;
+  for (int index = 0; index < N; index++) {
+    randomNumber = (rand() % 5) + 1;
+    P[index].priority = randomNumber;
+  }
+}
+
+
 bool comparetwoP(PCB P1, PCB P2){
   if(P1.arrival == P2.arrival)
     return (P1.priority < P2.priority);
@@ -103,6 +137,27 @@ float findaverageturnaround(PCB* P,int N){
   return (sum/N);
 }
 
+
+void ManualFill(PCB *P, int N){
+  cout<<"PID\t\tArrival Time\t\tBurst Time\t\tPriority"<<endl;
+  for(int i=0; i<N; i++){
+    cin>>P[i].PID>>P[i].arrival>>P[i].burst>>P[i].priority;
+  }
+}
+
+void AutoFill(PCB *P, int N){
+  GenPID(P,N);
+  RandGenA(P,N);
+  RandGenB(P,N);
+  RandGenP(P,N);
+  cout<<"Process ID\t\tArrival Time\t\tBurst Time\t\tPriority"<<endl;
+  for(int i=0; i<N; i++){
+    cout<<P[i].PID<<"\t\t\t"<<P[i].arrival<<"\t\t\t"<<P[i].burst<<"\t\t\t"<<P[i].priority<<endl;
+  }
+}
+
+
+
 int main(){
 
   cout<<"Enter the No. of Processes and Age";
@@ -110,11 +165,17 @@ int main(){
   cin>>N;
   cin>>Age;
   struct PCB* P = new PCB[N];
-  cout<<"PID\t\tArrival Time\t\tBurst Time\t\tPriority"<<endl;
-  for(int i=0; i<N; i++){
-    cin>>P[i].PID>>P[i].arrival>>P[i].burst>>P[i].priority;
-  }
 
+  cout<<"Choose Random Generator(0) or Manual Input(1)"<<endl;
+  int option;
+  cin>>option;
+  if(option==1)
+      ManualFill(P,N);
+  else if(option==0){
+      AutoFill(P,N);
+    }
+  else
+      cout<<"Wrong Option choosen"<<endl;
   sort(P,P+N,comparetwoP);
 
   cout<<"Simulation Results :"<<endl;
