@@ -103,6 +103,24 @@ void AutoFill(PCB *P, int N){
   }
 }
 
+void GanttChart(PCB *P, int N){
+  int t=0;
+  for(int i=0; i<N; i++){
+    if(t < P[i].arrival){
+      cout<<"From time = "<<t<<", CPU is idle"<<endl;
+      t=P[i].arrival;
+      cout<<"From time = "<<t<<", Process "<<P[i].PID<<" is executing."<<endl;
+      t=P[i].completion;
+      cout<<"At time = "<<t<<", Process "<<P[i].PID<<" completed."<<endl;
+    }
+    else{
+      cout<<"From time = "<<t<<", Process "<<P[i].PID<<" is executing."<<endl;
+      t=P[i].completion;
+      cout<<"At time = "<<t<<", Process "<<P[i].PID<<" completed."<<endl;
+    }
+  }
+}
+
 
 int main(){
 
@@ -130,6 +148,8 @@ int main(){
   P[0].completion = P[0].burst + P[0].arrival;
 
   fill(P,N);
+
+  GanttChart(P,N);
 
   cout<<"Process ID\t\tBurst Time\t\tWait Time\t\tTurnaround Time\t\tCompletion Time"<<endl;
   for(int i=0; i<N; i++){
