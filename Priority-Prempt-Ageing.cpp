@@ -153,7 +153,7 @@ void fillWaitTime(PCB* P, int N,int Age){
     minPriority = INT_MAX;
 
     if(remaining[process]==0){
-      cout<<"----------XXX----------Job "<<P[process].PID <<" Completed----------XXX-----------"<<endl;
+      cout<<"----------XXX----------"<<"At t = "<<time+1<<", Job "<<P[process].PID <<" Completed----------XXX-----------"<<endl;
       completed+=1;
       P[process].completion = time+1;
       P[process].wait = P[process].completion - P[process].burst - P[process].arrival;
