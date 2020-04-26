@@ -11,7 +11,31 @@ struct PCB{
 };
 
 
+void initialize_randomly(int pcount, PCB *P){
 
+    srand (time(NULL));
+    default_random_engine arrival_generator, burst_generator;
+    normal_distribution<double> arrival_distribution(6,4), burst_distribution(5,3);
+    // uniform_int_distribution<int> arrival_distribution(20,25), burst_distribution(20,25);
+
+    int pid, arrival, burst;
+    cout<<"Process ID\t\tArrival Time\t\tBurst Time"<<endl;
+
+    for (int i = 0; i < pcount; i++) {
+      pid = i+1;
+      // pid = i%20; // for recurring processes
+      arrival = (int) arrival_distribution(arrival_generator) ;
+      arrival = abs(arrival);
+
+      burst =  (int) burst_distribution(burst_generator);
+      burst = abs(burst);
+
+      // added for MLQ
+
+      P[i].PID = pid; P[i].arrival = arrival; P[i].burst = burst;
+      cout<<P[i].PID<<"\t\t\t"<<P[i].arrival<<"\t\t\t"<<P[i].burst<<endl;
+    }
+}
 
 
 void GenPID(PCB *P, int N){
@@ -153,7 +177,7 @@ int main(){
   cin>>N;
   struct PCB* P = new PCB[N];
 
-  cout<<"Choose Random Generator(0) or Manual Input(1)"<<endl;
+  cout<<"Choose Random Generator(0) or Manual Input(1) or Distribution Generator(2)"<<endl;
   int option;
   cin>>option;
   if(option==1)
@@ -161,8 +185,11 @@ int main(){
   else if(option==0){
       AutoFill(P,N);
     }
+  else if(option==2){
+      initialize_randomly(N,P);
+  }
   else
-      cout<<"Wrong Option choosen"<<endl;
+    cout<<"Wrong Option choosen"<<endl;
 
   sort(P,P+N,comparetwoP);
 
