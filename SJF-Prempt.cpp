@@ -131,7 +131,7 @@ void findwaittime(PCB* P, int N){
 
 
     if(remaining[shortest]==0){
-      cout<<"----------XXX----------Job "<<P[shortest].PID <<" Completed----------XXX-----------"<<endl;
+      cout<<"----------XXX----------"<<"At t = "<<time+1<<", Job "<<P[shortest].PID <<" Completed----------XXX-----------"<<endl;
       completed+=1;
       P[shortest].completion = time+1;
       P[shortest].wait = P[shortest].completion - P[shortest].burst - P[shortest].arrival;
