@@ -10,6 +10,26 @@ struct PCB{
   int completion=0;// Timestamp at which a particular process execution completes.###from the point of view of CPU.
 };
 
+void compute_stdev(PCB *P, int N, int meanwait, int meanturaround){
+  double stdevwait = 0 , tempw = 0, temp = 0, stdevturnaround = 0;
+  for (int i = 0 ; i < N ; i++) {
+       tempw = pow((P[i].wait - meanwait),2);
+       temp = pow((P[i].turnaround - meanturaround),2);
+       stdevwait+=tempw;
+       stdevturnaround+=temp;
+  }
+
+  stdevwait = stdevwait / N;
+  stdevwait = sqrt(stdevwait);
+
+  stdevturnaround = stdevturnaround / N;
+  stdevturnaround = sqrt(stdevturnaround);
+
+  cout << "Wait standard deviation : " << stdevwait << '\n';
+  cout << "Turnaround standard deviation : " << stdevturnaround << '\n';
+
+}
+
 
 void initialize_randomly(int pcount, PCB *P){
 
@@ -206,6 +226,8 @@ int main(){
   cout<<"Average Wait Time = "<<findaveragewait(P,N)<<endl;
 
   cout<<"Average Turnaround Time = "<<findaverageturnaround(P,N)<<endl;
+
+  compute_stdev(P,N,findaveragewait(P,N),findaverageturnaround(P,N));
 
   free(P);
 
