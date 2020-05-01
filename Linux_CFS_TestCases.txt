@@ -1,0 +1,134 @@
+Enter the No. of Processes 5
+Choose Manual Input(1) or Distribution Generator(2)
+1
+Arrival Time            Burst Time              Nice Value
+0       10      3
+15      25      -2
+18       30     -3
+20      25      1
+32      28      0
+-------------------****-----------------
+Current Status-------CURRENT_TIME:0ms---
+        PID     VRUNTIME        ACT_RUNTIME
+        1       0               0
+
+----Scheduler Runtime--------CURRENT_TIME:0ms----Scheduler Period: 20----Proc Count: 1-----
+Process=1 Time_Slice=10 Act_Run_Time=10 Burst_Time=10 Sched_Run_Time=10
+******Process=1 completed at 10ms******
+########No active running processes########
+
+-------------------****-----------------
+Current Status-------CURRENT_TIME:15ms---
+        PID     VRUNTIME        ACT_RUNTIME
+        2       0               0
+
+----Scheduler Runtime--------CURRENT_TIME:15ms----Scheduler Period: 20----Proc Count: 1-----
+Process=2 Time_Slice=4 Act_Run_Time=4 Burst_Time=25 Sched_Run_Time=4
+#########New process/processes entered run queue#####
+
+-------------------****-----------------
+Current Status-------CURRENT_TIME:19ms---
+        PID     VRUNTIME        ACT_RUNTIME
+        2       2.5826          4
+        3       2.5826          0
+
+----Scheduler Runtime--------CURRENT_TIME:19ms----Scheduler Period: 20----Proc Count: 2-----
+Process=3 Time_Slice=4 Act_Run_Time=4 Burst_Time=30 Sched_Run_Time=4
+#########New process/processes entered run queue#####
+
+-------------------****-----------------
+Current Status-------CURRENT_TIME:23ms---
+        PID     VRUNTIME        ACT_RUNTIME
+        2       2.5826          4
+        4       2.5826          0
+        3       4.63986         4
+
+----Scheduler Runtime--------CURRENT_TIME:23ms----Scheduler Period: 20----Proc Count: 3-----
+Process=4 Time_Slice=3.72982 Act_Run_Time=3.72982 Burst_Time=25 Sched_Run_Time=3.72982
+Process=2 Time_Slice=7.21401 Act_Run_Time=11.214 Burst_Time=25 Sched_Run_Time=10.9438
+#########New process/processes entered run queue#####
+
+-------------------****-----------------
+Current Status-------CURRENT_TIME:33.9438ms---
+        PID     VRUNTIME        ACT_RUNTIME
+        3       4.63986         4
+        5       4.63986         0
+        4       7.24032         3.72982
+        2       7.24032         11.214
+
+----Scheduler Runtime--------CURRENT_TIME:33.9438ms----Scheduler Period: 20----Proc Count: 4-----
+Process=5 Time_Slice=3.7779 Act_Run_Time=3.7779 Burst_Time=28 Sched_Run_Time=3.7779
+Process=3 Time_Slice=7.34551 Act_Run_Time=11.3455 Burst_Time=30 Sched_Run_Time=11.1234
+Process=4 Time_Slice=3.02527 Act_Run_Time=6.75509 Burst_Time=25 Sched_Run_Time=14.1487
+Process=2 Time_Slice=5.85132 Act_Run_Time=17.0653 Burst_Time=25 Sched_Run_Time=20
+
+-------------------****-----------------
+Current Status-------CURRENT_TIME:53.9438ms---
+        PID     VRUNTIME        ACT_RUNTIME
+        5       8.41776         3.7779
+        3       8.41776         11.3455
+        4       11.0182         6.75509
+        2       11.0182         17.0653
+
+----Scheduler Runtime--------CURRENT_TIME:53.9438ms----Scheduler Period: 20----Proc Count: 4-----
+Process=5 Time_Slice=3.7779 Act_Run_Time=7.5558 Burst_Time=28 Sched_Run_Time=3.7779
+Process=3 Time_Slice=7.34551 Act_Run_Time=18.691 Burst_Time=30 Sched_Run_Time=11.1234
+Process=4 Time_Slice=3.02527 Act_Run_Time=9.78036 Burst_Time=25 Sched_Run_Time=14.1487
+Process=2 Time_Slice=5.85132 Act_Run_Time=22.9166 Burst_Time=25 Sched_Run_Time=20
+
+-------------------****-----------------
+Current Status-------CURRENT_TIME:73.9438ms---
+        PID     VRUNTIME        ACT_RUNTIME
+        5       12.1957         7.5558
+        3       12.1957         18.691
+        4       14.7961         9.78036
+        2       14.7961         22.9166
+
+----Scheduler Runtime--------CURRENT_TIME:73.9438ms----Scheduler Period: 20----Proc Count: 4-----
+Process=5 Time_Slice=3.7779 Act_Run_Time=11.3337 Burst_Time=28 Sched_Run_Time=3.7779
+Process=3 Time_Slice=7.34551 Act_Run_Time=26.0365 Burst_Time=30 Sched_Run_Time=11.1234
+Process=4 Time_Slice=3.02527 Act_Run_Time=12.8056 Burst_Time=25 Sched_Run_Time=14.1487
+Process=2 Time_Slice=2.08335 Act_Run_Time=25 Burst_Time=25 Sched_Run_Time=16.232
+******Process=2 completed at 90.1759ms******
+Process=5 Time_Slice=3.76797 Act_Run_Time=15.1017 Burst_Time=28 Sched_Run_Time=20
+
+-------------------****-----------------
+Current Status-------CURRENT_TIME:93.9438ms---
+        PID     VRUNTIME        ACT_RUNTIME
+        3       15.9736         26.0365
+        4       18.574          12.8056
+        5       19.7415         15.1017
+
+----Scheduler Runtime--------CURRENT_TIME:93.9438ms----Scheduler Period: 20----Proc Count: 3-----
+Process=3 Time_Slice=3.96348 Act_Run_Time=30 Burst_Time=30 Sched_Run_Time=3.96348
+******Process=3 completed at 97.9073ms******
+Process=4 Time_Slice=4.2764 Act_Run_Time=17.082 Burst_Time=25 Sched_Run_Time=8.23988
+Process=5 Time_Slice=5.34029 Act_Run_Time=20.442 Burst_Time=28 Sched_Run_Time=13.5802
+Process=4 Time_Slice=4.2764 Act_Run_Time=21.3584 Burst_Time=25 Sched_Run_Time=17.8566
+Process=5 Time_Slice=2.14343 Act_Run_Time=22.5854 Burst_Time=28 Sched_Run_Time=20
+
+-------------------****-----------------
+Current Status-------CURRENT_TIME:113.944ms---
+        PID     VRUNTIME        ACT_RUNTIME
+        5       27.2252         22.5854
+        4       29.2546         21.3584
+
+----Scheduler Runtime--------CURRENT_TIME:113.944ms----Scheduler Period: 20----Proc Count: 2-----
+Process=5 Time_Slice=5.41461 Act_Run_Time=28 Burst_Time=28 Sched_Run_Time=5.41461
+******Process=5 completed at 119.358ms******
+Process=4 Time_Slice=3.64156 Act_Run_Time=25 Burst_Time=25 Sched_Run_Time=9.05617
+******Process=4 completed at 123ms******
+########No active running processes########
+
+--------All processes completed-----
+PID     Nice    Arrival         Burst           Wait            Turnaround              Completion Time
+1       3       0               10              0               10                      10
+2       -2      15              25              50.1759         75.1759                 90.1759
+3       -3      18              30              49.9073         79.9073                 97.9073
+4       1       20              25              78              103                     123
+5       0       32              28              59.3584         87.3584                 119.358
+
+Total Processes: 5
+Average Wait Time: 47.4883
+Wait Time Standard Deviation: 46.314
+Average Turnaround Time: 71.0883

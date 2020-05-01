@@ -1,0 +1,62 @@
+FCFS
+PID                   Arrival Time                      Burst Time
+  1                       5                                  5
+  2                       4                                  6
+  3                       3                                  7
+  4                       1                                  9
+  5                       2                                  2
+  6                       6                                  3
+
+Process ID              Burst Time              Wait Time               Turnaround Time         Completion Time
+  4                       9                       0                       9                       10
+  5                       2                       8                       10                      12
+  3                       7                       9                       16                      19
+  2                       6                       15                      21                      25
+  1                       5                       20                      25                      30
+  6                       3                       24                      27                      33
+Average Wait Time = 12.6667
+Average Turnaround Time = 18
+Wait standard deviation : 8.02081
+Turnaround standard deviation : 6.9282
+
+SJF
+PID                   Arrival Time                      Burst Time
+  1                       5                                  5
+  2                       4                                  6
+  3                       3                                  7
+  4                       1                                  9
+  5                       2                                  2
+  6                       6                                  3
+
+Process ID              Burst Time              Wait Time               Turnaround Time         Completion Time
+  4                       9                       23                      32                      33
+  5                       2                       0                       2                       4
+  3                       7                       15                      22                      25
+  2                       6                       3                       9                       13
+  1                       5                       8                       13                      18
+  6                       3                       0                       3                       9
+Average Wait Time = 8.16667
+Average Turnaround Time = 13.5
+Wait standard deviation : 8.43603
+Turnaround standard deviation : 10.638
+
+ROUND ROBIN
+PID                   Arrival Time                      Burst Time     Time Quanta = 3
+  1                       5                                  5
+  2                       4                                  6
+  3                       3                                  7
+  4                       1                                  9
+  5                       2                                  2
+  6                       6                                  3
+
+Process ID              Burst Time              Wait Time               Turnaround Time         Completion Time
+    4                       9                       20                        29                      30
+    5                       2                       2                         4                       6
+    3                       7                       23                        30                      33
+    2                       6                       17                        23                      27
+    1                       5                       22                        27                      32
+    6                       3                       12                        15                      21
+Average Wait Time = 16
+Average Turnaround Time = 21.3333
+Wait standard deviation : 7.23418
+Turnaround standard deviation : 9.21954

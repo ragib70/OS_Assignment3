@@ -123,7 +123,7 @@ void fillWaitTime(PCB* P, int N, int tq){
     }
 
     q.pop();
-    P[current].mark=1;//since the process has got control of the process we mark it visited
+    P[current].mark=1;//since the process has got control of the processor we mark it visited
 
     if(tq < remaining[current]){//execute the current process and save the remaining time
       cout<<"At t = "<<time<<", Job Executing = "<<P[current].PID<<endl;
